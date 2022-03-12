@@ -99,12 +99,14 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 [.footer: :arrow_up::arrow_up::arrow_up::arrow_up: **A05: Broken Access Control**]
 
+[.column]
 - Unauthorized access to accounts
 - Unauthorized elevation of privilege
 - Unauthorized create/read/update/delete operations
 - JWT tampering or Cookie manipulation
 - CORS misconfigurations
 
+[.column]
 #### **_Recommendations_**
 - Principle of Complete Mediation
 - Principle of Least Privilege / Deny by default
@@ -149,10 +151,11 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Ineffective/missing password hashing.
 
 #### **_Recommendations_**
-- Static code analysis tools.
-- Application Level Encryption.
+- Static code analysis tools
+- Application Level Encryption
 - Defense-in-depth
 - Classify data processed
+- Only store data you need
 
 [.column]
 ![fit](Drawing-layerExport-2.png)
@@ -191,6 +194,20 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ---
 
+## A02: **Cryptographic Failures**
+
+![inline 75%](application-level-encryption3.png)
+
+```json
+{
+    "to": "App 1",
+    "from": "App 2",
+    "message": "encrypt(msg)"
+}
+```
+
+---
+
 ## A03 **Injection**
 
 [.text-emphasis: #FFFFFF, text-scale(1)]
@@ -202,11 +219,13 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 #### **_Recommendations_**
 - Validate, sanitize, escape any data that crosses trust boundaries.
+- Use frameworks that assemble HTML safely.
 - WAFs have many rules for blocking and detecting injection.
 
 
-^ Better frameworks has been the driving factor the decline.
-^ Cross-site scripting is one of the easier vulnerabilities to fix because of the improvement in frameworks.
+^ Use frameworks that assemble HTML safely
+  - Better frameworks has been the driving factor the decline.
+  - Cross-site scripting is one of the easier vulnerabilities to fix because of the improvement in frameworks.
 
 ---
 
@@ -258,6 +277,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 [.footer: :arrow_up: **A06: Security Misconfiguration**, includes **A04:2017 XML External Entities**]
 
+[.column]
 - Infrastructure as Code has lead to an increase in **catching** security misconfigurations.
 - Improper configurations on cloud services, missing security hardening.
 - Unnecessary features enabled/installed.
@@ -266,6 +286,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - Keeping up with the latest public cloud provider changes.
   - Security is an emergent property of systems. Requires a multi-disciplinary approach.
 
+[.column]
 #### **_Recommendations_**
 - Static code analysis tools
 - Create "paved-roads" for development.
@@ -304,31 +325,53 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.footer: :arrow_up::arrow_up::arrow_up: Previously known as **A09:2017 Using Components with Known Vulnerabilities**]
 
 [.column]
+- Modern software includes a lot of external code.
 - Includes OS, runtimes, and libraries.
+- Not upgrading dependencies in a risk-based, timely fashion.
 
 #### **_Recommendations_**
+- Know the versions of all the components you use and indirectly use.
+- Remove unused dependencies.
+- Obtain packages from official sources, ensure signed (A08:2021-Software and Data Integrity Failures)
 - CI/CD tools to warn for outdated components.
+- Continuously monitor for vulnerabilities.
 
 [.column]
-![inline fit right](equifax4.png)
+![fit right inline](equifax4.png)
+
+
+^ Includes OS, runtimes, and libraries
+  - OS patches happen regularly, shouldn't just happen on a monthly or quarterly schedule.
+
+^ Continuously monitor for outdated components
+  - Github Dependency Check
+
+^ Continuously monitor for vulnerabilities
+  - OWASP Dependency Check - software supply chain security tool
 
 ---
 
 ## A07: **Identification and Authorization Failures**
 
-[.text: alignment(left), text-scale(1)]
 [.footer: :arrow_down::arrow_down::arrow_down::arrow_down::arrow_down: Replaces **A02: Broken Authentication**]
 
+[.column]
 - Permitting weak or well known passwords.
 - Permitting automated brute force / credential stuffing attacks.
 - Permitting weakly hashed passwords (A02: Cryptographic Failures).
 - Sessions that never expire.
+- Enumeration attacks.
 
+[.column]
 #### **_Recommendations_**
-  - Follow best practices for passwords and rate limiting logins.
-  - Validate authentication and authorization for every request that shouldn't be public.
-  - Countermeasure CSRF / XSS attacks > require re-authentication for sensitive features.
-  - Add Multi-factor Authentication where possible
+- Follow best practices for passwords and rate limiting logins.
+- Validate authentication and authorization for every request that shouldn't be public.
+- Countermeasure CSRF / XSS attacks > require re-authentication for sensitive features.
+- Add Multi-factor Authentication where possible
+
+
+^ Enumeration attacks
+  - Ensure registration, credential recovery, and API pathways are hardened, use the same messages for all outcomes.
 
 ^ Add Multi-factor Authentication where possible
   - MFA is a good prevention for credential stuffing, brute force attacks.
@@ -339,9 +382,33 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 [.footer: :eight_pointed_black_star: Includes **A08:2017 Insecure Deserialization**]
 
+[.column]
+- Plugins or libraries from untrusted sources.
 - CI/CD pipelines without commit or build checks.
 
-- SolarWinds hack in 2021
+#### **_Recommendations_**
+- Verify software and data is from trusted sources.
+- Verify components do not contain known dependencies.
+- CI/CD has proper configuration and access control
+
+[.column]
+![inline fit right](solarwinds.png)
+
+^ Verify software and data is from trusted sources
+  - Verify digital signatures
+
+^ Verify components do not contain known dependencies
+  - Once again OWASP Dependency Check
+
+^ CI/CD has proper configuration and access control
+  - What happened with SolarWinds is essentially their build system was compromised
+  - and hackers were able to inject unverified code.
+
+^ SolarWinds hack
+  - Not just a failure of software integrity, but also a failure of logging and monitoring.
+  - Russian hackers were in the system for more than a year before it was noticed.
+  - Test injection "trial" was ran a year before.
+  - Was a major national security issue.
 
 ---
 
@@ -391,13 +458,13 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Zero-Trust Architecture, perimeter security is not sufficient.
 
 [.column]
-![fit right](capitalone.jpg)
+![original right inline](capitalone.png)
 
 ---
 
 ## Next Steps
 
-![right fit filtered](owl.png)
+![right fit](owl.png)
 
 - There are more than 10 vulnerabilities, it's just the OWASP top 10.
 - Adopt a security mindset, shift(expand)-left.
