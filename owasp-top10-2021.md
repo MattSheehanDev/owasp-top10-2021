@@ -52,6 +52,25 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Not built as a standard:
   - But the truth is is that it does also act as a pseudo-standard, and the people creating the list are aware of that.
   - The top 10 is the bare minimum baseline, not all-encompassing.
+  - If you are looking for a comprehensive standard, OWASP ASVS (Application Security Verification Standard) is much much more comprehensive document.
+    - Owasp Top 10 is great for introducing security principles in an organization that maybe hasn't taken security posture previously.
+    - If you want to build a security program or train developers in a very in-depth way OWASP ASVS is much more comprehensive.
+
+---
+
+^ Unity of opposites
+
+^ Injection
+  - HTML5 weird email validation
+  - email me and I will respond! jim'or'1'!='@manicode.com
+
+^ Crypographic failures
+  - HSTS
+  - Configure applications to only listen and respond to HTTPS
+
+^ Security Logging and Monitoring Failures
+  - What to log slide
+  - https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html
 
 ---
 
@@ -60,18 +79,18 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.text: line-height(1)]
 
 [.column]
-### ![inline](TOP_10_Icons_Final_Broken_Access_Control.png) Broken Access Control
-### ![inline](TOP_10_Icons_Final_Crypto_Failures.png) Cryptographic Failures
-### ![inline](TOP_10_Icons_Final_Injection.png) Injection
-### ![inline](TOP_10_Icons_Final_Insecure_Design_100.png) **Insecure Design**
-### ![inline](TOP_10_Icons_Final_Security_Misconfiguration.png) Security Misconfiguration
-### ![inline](TOP_10_Icons_Final_Vulnerable_Outdated_Components.png) Vulnerable & Outdated Components
+### ![inline](assets/owasp/Broken_Access_Control.png) Broken Access Control
+### ![inline](assets/owasp/Crypto_Failures.png) Cryptographic Failures
+### ![inline](assets/owasp/Injection.png) Injection
+### ![inline](assets/owasp/Insecure_Design.png) **Insecure Design**
+### ![inline](assets/owasp/Security_Misconfiguration.png) Security Misconfiguration
+### ![inline](assets/owasp/Vulnerable_Outdated_Components.png) Vulnerable & Outdated Components
 
 [.column]
-### ![inline](TOP_10_Icons_Final_Identification_and_Authentication_Failures.png) Identification & Authentication Failures
-### ![inline](TOP_10_Icons_Final_Software_and_Data_Integrity_Failures.png) **Software & Data Integrity Failures**
-### ![inline](TOP_10_Icons_Final_Security_Logging_and_Monitoring_Failures.png) _Security Logging & Monitoring Failures_
-### ![inline](TOP_10_Icons_Final_SSRF.png) **_Server-Side Request Forgery_**
+### ![inline](assets/owasp/Identification_and_Authentication_Failures.png) Identification & Authentication Failures
+### ![inline](assets/owasp/Software_and_Data_Integrity_Failures.png) **Software & Data Integrity Failures**
+### ![inline](assets/owasp/Security_Logging_and_Monitoring_Failures.png) _Security Logging & Monitoring Failures_
+### ![inline](assets/owasp/SSRF.png) **_Server-Side Request Forgery_**
 
 ^ Key:
   - Anything that is green is new for 2021.
@@ -138,6 +157,9 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Principle of Complete Mediation : 
 
 ^ Principle of Least Privilege : 
+  - Applies not only to users of the application, but to the application itself,
+    and what access they are given to databases, data, and other services.
+    Ex. It's a rare case where the app needs a db user thats the db_owner, generally db_reader/db_writer are enough.
 
 ---
 
@@ -158,7 +180,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Only store data you need
 
 [.column]
-![fit](Drawing-layerExport-2.png)
+![fit](assets/defense-in-depth.png)
 
 
 ^ Footer : The 2021 Top 10 tries to focus more on root causes and not symptoms.
@@ -196,7 +218,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ## A02: **Cryptographic Failures**
 
-![inline 75%](application-level-encryption3.png)
+![inline 75%](assets/application-level-encryption.png)
 
 ```json
 {
@@ -247,19 +269,36 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Adopt better frameworks
 
 
-^ Difference between secure design and secure implementation
+^ Insecure Design
   - One of the new categories in 2021. Slightly controversial.
+  - If you want to build the house of your dreams what do you do first?
+    - Do you immediately start laying bricks, no, you collect your requirements.
+      - Wife and four kids? Elderly parents? Disabled member in the family?
+    - After you've collected your requirements do you start laying bricks then?
+      - No, you see an architect who will design it for you.
+
+^ Difference between secure design and secure implementation
   - A secure design can stil have implementation defects.
+  - It's the difference between a design flaw and a security bug
+    - A design flaw is an issue when designing the software
+      - reference architectures, gathering security requirements (nonfunctional requirements), and threat modeling help mitigate design flaws.
+    - A security bug is an implementation issue
+      - code reviews, security testing, secure coding training help mitigate security bugs.
   - But an insecure design cannot be fixed even with a perfect implementation, by definition.
   - An insecure design is costly to fix now, costlier to fix later
 
 ^ Requires considering security before code is written
+  - Security is often overlooked since it is considered a non-functional requirement
+    - Functional requirements are usually things like the features of a system
+    - Non-functional requirements are things like properties of a system (availibility, scalability, reliability, testability, deployability, security) (the "ilities")
   - Requires a holistic systems approach versus a component analysis
   - Requires a top-down decomposition from the business objectives.
   - Requires good visualization, hard to secure what you don't understand.
 
 ^ Threat modeling, secure reference architectures
   - Use threat modeling for critical authentication, access control, business logic, and key flows
+  - Secure-by-design means software that has been designed from the ground up to be secure.
+  - Every time you design a system you cannot start from a clean slate, there have to be some basic immutable principles, which is where reference architectures are needed.
 
 ^ Establish a Secure Development Lifecycle
   - Goes beyond just Shift-Left.
@@ -291,6 +330,8 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Static code analysis tools
 - Create "paved-roads" for development.
 - Code reviews
+- Read the manual
+
 
 ^ The rise in IaC can be attributed to the increase in security misconfigurations.
   - But that's a good thing!
@@ -318,6 +359,10 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Code reviews
   - IaC brings the development best practices to IT and Operations.
 
+^ Read the manual
+  - If you want to learn the proper settings to configure something you have to read the manual.
+  - There is a lot of documentation about how to harden your applications.
+
 ---
 
 ## A06: **Vulnerable and Outdated Components**
@@ -328,17 +373,20 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Modern software includes a lot of external code.
 - Includes OS, runtimes, and libraries.
 - Not upgrading dependencies in a risk-based, timely fashion.
+- Would probably be A01 if re-evaluated after Log4Shell
 
+![inline left 50%](assets/news/equifax.png)
+
+[.column]
 #### **_Recommendations_**
 - Know the versions of all the components you use and indirectly use.
-- Remove unused dependencies.
+- Minimize the attack surface - remove unused dependencies.
 - Obtain packages from official sources, ensure signed (A08:2021-Software and Data Integrity Failures)
 - CI/CD tools to warn for outdated components.
 - Continuously monitor for vulnerabilities.
 
-[.column]
-![fit right inline](equifax4.png)
-
+^ Would probably be A01 if re-evaluated after Log4Shell
+  - Log4Shell is the Log4j vulnerability that allowed for arbitrary code execution.
 
 ^ Includes OS, runtimes, and libraries
   - OS patches happen regularly, shouldn't just happen on a monthly or quarterly schedule.
@@ -348,6 +396,17 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ^ Continuously monitor for vulnerabilities
   - OWASP Dependency Check - software supply chain security tool
+
+---
+
+## A07: **Identification and Authorization Failures**
+
+[.footer: Verizon 2021 Data Breach Investigations Report]
+
+![fit left original 65%](assets/verizon_dbir/Figure_7_verizon.png)
+![fit right original 50%](assets/verizon_dbir/Figure_92_verizon.png)
+
+^ https://haveibeenpwned.com
 
 ---
 
@@ -370,11 +429,27 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Add Multi-factor Authentication where possible
 
 
+^ Permitting weak or well known passwords
+  - Passwords should be salted and hashed (one-way)
+
+^ Permitting brute force / credential stuffing
+  - 10 failed login attempts in under a minute / 100 failed login attempts in 24 hours
+  - What is credential stuffing?
+    - Credential stuffing is using existing username and password combinations used in credential dumps. These lists of leaked credentials are easily acquired.
+    - They are effective because users often reuse their username and passwords.
+    - So it's not a total guessing game.
+    - MFA is an effective strategy of preventing attacks.(99.9% according to Microsoft)
+
 ^ Enumeration attacks
   - Ensure registration, credential recovery, and API pathways are hardened, use the same messages for all outcomes.
 
 ^ Add Multi-factor Authentication where possible
   - MFA is a good prevention for credential stuffing, brute force attacks.
+
+^ Why is access control number 1 but authorization number 7?
+  - Because frameworks that handle authorization have improved over the years but
+  - it's not possible for those frameworks to understand your Access Control policies.
+  - Access Control policies are usually customized, involve the business layer, much more manual and much harder to standardize.
 
 ---
 
@@ -388,21 +463,31 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 #### **_Recommendations_**
 - Verify software and data is from trusted sources.
-- Verify components do not contain known dependencies.
-- CI/CD has proper configuration and access control
+- Verify components do not contain known vulnerable dependencies.
+- CI/CD has proper configuration and access control.
 
 [.column]
-![inline fit right](solarwinds.png)
+![inline fit right](assets/news/solarwinds.png)
+
+^ Plugins or libraries from untrusted sources
+  - I'm looking at you javascript developers.
+  - It's like the whole security model of NPM is based off of pinky-promises.
+  - Maybe a system composed of layers and layers of constantly updating code by whoever is not the most ideal system.
 
 ^ Verify software and data is from trusted sources
   - Verify digital signatures
 
-^ Verify components do not contain known dependencies
+^ Verify components do not contain known vulnerable dependencies
   - Once again OWASP Dependency Check
+  - OWASP CycloneDX operates as a bill-of-materials to capture your inventory of libraries and frameworks
 
 ^ CI/CD has proper configuration and access control
   - What happened with SolarWinds is essentially their build system was compromised
   - and hackers were able to inject unverified code.
+
+^ Insecure deserialization
+  - You probably know this, but programming languages allow you to turn a tree of objects into a string and send that to and from the browser.
+  - If you receive and deserialize that string from an untrusted source it may allow objects or code to be executed.
 
 ^ SolarWinds hack
   - Not just a failure of software integrity, but also a failure of logging and monitoring.
@@ -456,15 +541,17 @@ text: alignment(left), text-scale(1.2), line-height(1)
 #### **_Recommendations_**
 - Restrict outgoing access on web servers, restrict incoming access on internal servers.
 - Zero-Trust Architecture, perimeter security is not sufficient.
+- Avoid taking URLs as a full parameter that the server acts upon.
+- Build safe URLs with URL encoding of parameters.
 
 [.column]
-![original right inline](capitalone.png)
+![original right inline](assets/news/capitalone.png)
 
 ---
 
 ## Next Steps
 
-![right fit](owl.png)
+![right fit](assets/owl.png)
 
 - There are more than 10 vulnerabilities, it's just the OWASP top 10.
 - Adopt a security mindset, shift(expand)-left.
@@ -475,6 +562,10 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ What kind of attacks, the sophistication of attacks is always evolving.
 
 ^ Engage developers, fun and engaging training, build security champions.
+
+^ Secure coding
+- Sometimes called defensive coding.
+- Assumes that users are going to use the application in ways not intended.
 
 ---
 
@@ -487,4 +578,5 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 - https://owasp.org/Top10/
 - https://github.com/OWASP/Top10
+- https://www.verizon.com/business/resources/reports/dbir/2021/masters-guide/
 
