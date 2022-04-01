@@ -11,6 +11,9 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ### _Matthew Sheehan_
 
+^ About Me
+  - Not an expert, but I am an enthusiast
+
 ---
 
 ## About **OWASP Top 10**
@@ -55,22 +58,14 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - If you are looking for a comprehensive standard, OWASP ASVS (Application Security Verification Standard) is much much more comprehensive document.
     - Owasp Top 10 is great for introducing security principles in an organization that maybe hasn't taken security posture previously.
     - If you want to build a security program or train developers in a very in-depth way OWASP ASVS is much more comprehensive.
+    - ASVS L1 is the new minimum.
 
----
 
 ^ Unity of opposites
 
-^ Injection
-  - HTML5 weird email validation
-  - email me and I will respond! jim'or'1'!='@manicode.com
-
-^ Crypographic failures
-  - HSTS
-  - Configure applications to only listen and respond to HTTPS
-
-^ Security Logging and Monitoring Failures
-  - What to log slide
-  - https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html
+^ How long would it take you to implement x?
+  - 5 minutes, unless you're a contractor then you bill it as a two week project.
+  - Just remember contracting, if you can't be part of the solution, there's always money to be made prolonging the problem.
 
 ---
 
@@ -108,6 +103,12 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - Greater than half-million applications worth of vulnerability data with more than 400 unique CWE's.
   - Data points included year, cwe, what kind of test it was (human, automated), number of apps found with at least one incident of the CWE.
   - The data points are aggregated to determine an incident rate per CWE.
+
+^ About the order
+  - The order is incredibly suspect. Depending on how you analyze the data you could come up with different orders.
+  - So I would emphasize that the order of the list is not representative of their importance.
+  - This is also an incomplete list, the "Top 10". Since you could make a checklist with hundreds of items (kind of like the ASVS),
+  - I'd argue that the Top 10 are probably all of equal importance.
 
 ^ About the names:
   - Titles are meant to be root causes, not symptoms.
@@ -172,15 +173,16 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Ineffective/missing TLS.
 - Ineffective/missing password hashing.
 
-#### **_Recommendations_**
+![fit](assets/defense-in-depth.png)
+
+[.column]
+##### **_Recommendations_**
 - Static code analysis tools
 - Application Level Encryption
+- HTTP Strict-Transport-Security Header (HSTS)
 - Defense-in-depth
 - Classify data processed
 - Only store data you need
-
-[.column]
-![fit](assets/defense-in-depth.png)
 
 
 ^ Footer : The 2021 Top 10 tries to focus more on root causes and not symptoms.
@@ -203,6 +205,12 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ^ Application Level Encryption (ALE) : Moves the boundaries of encryption to within the appliation itself.
 
+^ HTTP Strict-Transport-Security Header
+  - Instructs the browser to only access the site by HTTPS
+  - Only a browser instruction, other consumers of the API probably will not obey the instruction.
+  - The only way to really enforce HTTPS is to configure applications to only listen and respond to HTTPS
+    - Is there ever an exuse to use HTTP?
+
 ^ Defense-in-depth : Encryption is a form of access control if you think about it.
                      Only an authenticated identity should have the access permissions to decrypt data.
                      So even if your access control is broken, having the data encrypted provides that extra protection.
@@ -213,6 +221,10 @@ text: alignment(left), text-scale(1.2), line-height(1)
                             Identify risks to data
                             Build trust models
                             Prioritize threat vectors
+
+^ Classify data processed
+  - Why is your grocery bill considered by GDPR/CCPA to be the highest level of security
+    - You can figure out medical issues and religion because of dietary resrictions
 
 ---
 
@@ -238,16 +250,53 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 - First version since 2010 not A01.
   - Improved frameworks attributed for the decline.
+- LDAP injection, XSS, SQL
 
 #### **_Recommendations_**
 - Validate, sanitize, escape any data that crosses trust boundaries.
 - Use frameworks that assemble HTML safely.
 - WAFs have many rules for blocking and detecting injection.
 
+^ LDAP injection, XSS, SQL
+  - Probably as developers no one needs to worry about LDAP injection, maybe IT.
+  - XSS, a type of injection wehre you inject code into a webpage.
 
 ^ Use frameworks that assemble HTML safely
   - Better frameworks has been the driving factor the decline.
   - Cross-site scripting is one of the easier vulnerabilities to fix because of the improvement in frameworks.
+
+---
+
+## A03 **Injection**
+
+```
+(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")
+ @(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}
+ (?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
+```
+
+<br/>
+
+> matt'or'1'!='@sheehan.codes
+
+^ matt'or'@sheehan.codes'='@sheehan.codes
+^ "'OR 1=1 --"
+^ 'or%201=1--@sheehan.codes
+^ "<script>alert(1)</script>"@sheehan.codes
+
+<br/>
+
+```sql
+"SELECT * FROM [table] WHERE [email] = '" + email + "'"
+```
+
+^ Regex
+  - RFC 5322 compliant email regex, email standard that describes the basic format for an email message
+  - HTML5 weird email validation
+
+^ Email injection
+  - email me and I will respond! matt'or'1'!='@mattsheehan.dev
+    - stolen from jim manicode, one of the core maintainers of the top 10
 
 ---
 
@@ -397,6 +446,13 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Continuously monitor for vulnerabilities
   - OWASP Dependency Check - software supply chain security tool
 
+^ Equifax
+  - There was a third party software exploit (for Apache Struts), that had already of had been patched,
+  - But Equifax failed to update their servers with the newer version.
+  - I think the total number was actually higher than the 143 million listed there,
+    - I think the total number of American with information stolen was closer to 147 million.
+    - But once you get to those kind of stratospheric numbers, whats a few extra million.
+
 ---
 
 ## A07: **Identification and Authorization Failures**
@@ -406,7 +462,16 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ![fit left original 65%](assets/verizon_dbir/Figure_7_verizon.png)
 ![fit right original 50%](assets/verizon_dbir/Figure_92_verizon.png)
 
+^ 61% of breaches involve credentials
+
+^ 80% of hacking attempts involve credentials
+
+^ The way the Verizon report determines between an breach and an incident
+  - A breach is the confirmed disclosure of data to an unauthorized party.
+  - An incident is a security event that compromises the integrity of system, but doesn't result in compromised data.
+
 ^ https://haveibeenpwned.com
+^ https://youtu.be/opRMrEfAIiI
 
 ---
 
@@ -418,6 +483,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Permitting weak or well known passwords.
 - Permitting automated brute force / credential stuffing attacks.
 - Permitting weakly hashed passwords (A02: Cryptographic Failures).
+- Insecure password recovery.
 - Sessions that never expire.
 - Enumeration attacks.
 
@@ -440,16 +506,34 @@ text: alignment(left), text-scale(1.2), line-height(1)
     - So it's not a total guessing game.
     - MFA is an effective strategy of preventing attacks.(99.9% according to Microsoft)
 
+^ Insecure password recovery
+  - What street did you grow up on?
+  - What was your pets name?
+
 ^ Enumeration attacks
   - Ensure registration, credential recovery, and API pathways are hardened, use the same messages for all outcomes.
 
 ^ Add Multi-factor Authentication where possible
   - MFA is a good prevention for credential stuffing, brute force attacks.
+  - Preferably using an authenticator app as a two-step authentication. SMS is susceptible to SMS spoofing.
 
 ^ Why is access control number 1 but authorization number 7?
   - Because frameworks that handle authorization have improved over the years but
   - it's not possible for those frameworks to understand your Access Control policies.
   - Access Control policies are usually customized, involve the business layer, much more manual and much harder to standardize.
+
+---
+
+## A08: **Software and Data Integrity Failures**
+
+![fit inline](assets/news/npm-sabotage.png)
+
+^ I think this slide was suppose to come after the next one.
+  Oh well, by the time I got to number 8 I was already a few beers in.
+
+^ This is an article that came across my feed the other day, and this affects users in Russia
+  - But how easy would it be for this to happen to any package?
+  - It's a littel crazy that we've built on entire software supply chain the pinky-promise that nothing malicious will get uploaded.
 
 ---
 
@@ -468,6 +552,9 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 [.column]
 ![inline fit right](assets/news/solarwinds.png)
+
+^ Software and Data Integrity Failures
+  - npm Package Developer Released Sabotaged Version That Deletes Files for Users Based in Russia
 
 ^ Plugins or libraries from untrusted sources
   - I'm looking at you javascript developers.
@@ -490,6 +577,8 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - If you receive and deserialize that string from an untrusted source it may allow objects or code to be executed.
 
 ^ SolarWinds hack
+  - Hackers broke into the SolarWinds injected malicious code as part of the build process for their IT software that was distributed to customers as part of an automatic update.
+  - This was a particularly big deal because the US government used that software and it ultimately ended with sanctions on Russia.
   - Not just a failure of software integrity, but also a failure of logging and monitoring.
   - Russian hackers were in the system for more than a year before it was noticed.
   - Test injection "trial" was ran a year before.
@@ -516,15 +605,67 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 
 ^ Simple idea, difficult to implement.
-  Requires signficant commitment, complexity, cost, and operational support.
-  Challenges include tools, culture, budget, and training
+  - Requires signficant commitment, complexity, cost, and operational support.
+  - Challenges include tools, culture, budget, and training
+
+^ Usually security vulnerabilities are found from outside the company.
+  - ex. someone reports a fraudulent transcation.
+
 ^ Critical if you intend to prosecute
+
 ^ Necessary for breach disclosure laws
+
 ^ Static-code analysis can't find the absence
+
 ^ Difficult to have a centralized monitoring store without taking a multi-disciplinary approach.
   It's hard to get developers to care about security if they exist in their bubble, and QA exists in it's bubble.
   Developers have a lot of other things they are trying to do, build new features, improve quality, increase performance, build to scale. How do you get developer attention when security is a constantly moving target is very nuanced.
+
 ^ Beware the "honeypot" database - putting all your information in one database and now that is the database everyone wants to get into.
+
+---
+
+## A09: **Security Logging and Monitoring Failures**
+
+[.footer: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html]
+
+^ Footer
+  - I do want to bring attention to the footer and the cheatsheet for logging
+  - It's particularly good in the way to lays out an logging message standard that can actually be implemented.
+
+[.column]
+#### What to log
+- Input validation failures (invalid parameter names, invalid protocol)
+- Output validation failures (database record mismatch)
+- Authentication failures and successes
+- Application errors
+- Application startup, shutdown, configuration changes
+- High-risk functions (All access control events, deleting users, assigning privileges, all actions by administrative users, data imports and exports)
+
+^ Input validation failures
+  - invalid parameter names, invalid protocol
+^ Output validation failures
+  - database record mismatch
+^ Authentication failures and successes
+^ Application errors
+^ Application startup, shutdown, configuration changes
+^ High-risk functions
+  - All access control events, deleting users, assigning privileges, all actions by administrative users, data imports and exports
+
+
+[.column]
+#### What not to log
+- PII and PHI
+- Access tokens and Session IDs
+- Connection strings
+- Encryption keys and secrets
+
+^ PII and PHI
+^ Access tokens and Session IDs
+  - These are your JWT tokens
+  - Could use a hashed value of the user session id to track session events
+^ Connection strings
+^ Encryption keys and secrets
 
 ---
 
@@ -547,11 +688,26 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.column]
 ![original right inline](assets/news/capitalone.png)
 
+^ SSRF is the backend version of CSRF (Cross-Site Request Forgery)
+  - Instead of the browser performing some unwanted request in an authenticated state, it's using the servers permissions.
+
+^ Capital One breach
+  - Part of the reason I think SSRF made the top 10 list is that there have been a few high profile breaches because of it.
+  - Details of the breach
+    - Capital One had a server hosted in AWS
+    - Now in AWS is an endpoint that is private to AWS but is accessible to every service AWS and only AWS (That's important for later)
+      - And that AWS endpoint is the metadata URL that returns the metadata of the resources
+    - The VM accepted a URL as a parameter and then it used that URL to redirect traffic to other services.
+    - The attackers knew that the VM was hosted in AWS, so that replaced the URL parameter with http://169.254.169.254/
+    - They VM directed the request to the metadata endpoint and returned metadata about itself, including it's permissions.
+    - The attackers noticed that the VM was allocated with excessive permissions to S3 storage buckets
+    - And then they used those permissions of the VM + metadata endpoint to list the S3 buckets and download them.
+
 ---
 
 ## Next Steps
 
-![right fit](assets/owl.png)
+![right fit](assets/owl2.jpg)
 
 - There are more than 10 vulnerabilities, it's just the OWASP top 10.
 - Adopt a security mindset, shift(expand)-left.
@@ -562,10 +718,16 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ What kind of attacks, the sophistication of attacks is always evolving.
 
 ^ Engage developers, fun and engaging training, build security champions.
+  - Forcing security on developers doesn't work, you cannot dictate security.
+  - Developers have to take ownership of security themselves, sometimes that requires a little give and take.
 
 ^ Secure coding
-- Sometimes called defensive coding.
-- Assumes that users are going to use the application in ways not intended.
+  - Sometimes called defensive coding.
+  - Assumes that users are going to use the application in ways not intended.
+
+^ Security is a process not a product.
+  - There's not really anything you can do in security that will make the business money.
+  - The best case scenario is it potentially loses them less money down the road.
 
 ---
 
