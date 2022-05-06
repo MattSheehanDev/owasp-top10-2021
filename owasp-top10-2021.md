@@ -4,8 +4,6 @@ build-lists: false
 list: bullet-character(∙)
 text: alignment(left), text-scale(1.2), line-height(1)
 
-<!-- Ostrich Sans / Work Sans / Titillium / Franziska FF / Alegreya Sans -->
-<!-- ⁃ ☑︎ ◦ ∙ ✪ -->
 
 # **OWASP Top 10:** 2021 Edition
 
@@ -30,8 +28,10 @@ text: alignment(left), text-scale(1.2), line-height(1)
 | Facebook | 2004 |
 | **OWASP Top 10** | **2003** |
 
-^ Why doesn't the top 10 update more often?
-  - It would be hard to adopt training for the top 10 if it was a constantly moving target. The cadence generally is every 3 years.
+^ Why doesn't the Top 10 update more often?
+  - OWASP Top 10 has become a sort of defacto pseudo-standard, and companies do use it as a training resource.
+  - So it would be hard to adopt training for the OWASP Top 10 if it was a constantly moving target.
+  - The update cadence has generally been every 3 years.
 
 ---
 
@@ -43,29 +43,31 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Built as a data-driven **_awareness_** document, not as a standard.
 - Was actually suppose to be OWASP Top 10: 2020. :sweat_smile:
 
-^ Targeted at developers:
-  - One of the biggest challenges to security is figuring out how to engage developers.
-  - There are not enough AppSec professionals, you have to empower and support your developers.
-  - Developers can't be expected to remember every detail, languages and frameworks need updated so that writing secure code is the default.
+^ Targeted at developers, architects, and security professionals.:
+  - One of the biggest challenges to comprehensive security is figuring out how to engage multiple disciplines.
+    - All the way through from designing the system, developing the system, and then system operation.
 
-^ Then most critical risks:
-  - Not indicative of the likelihood or the impact of the vulnerability.
-  - Keep in mind, its just the top 10, it could have just as easily been the top 11 or top 20, because there is still the 11th - nth risk.
+^ And you have to engage everyone.
+  - There are just not enough AppSec professionals, you have to empower, support, and train everybody.
+  - A lot of us are developers, there's a lot of stuff already that we are expected to know in detail, and security is probably not at the top of our minds.
 
-^ Not built as a standard:
+^ The ten most critical risks identified in web applications.
+  - Not solely indicative of the likelihood or the impact of the vulnerability, it's a combination of both the impact of the vulnerability and the likelihood of it.
+  - And there should be an asterisk there that this is only the _Top 10_ not the only 10, it could have just as easily been the top 11 or top 20, because there are still many more risks.
+
+^ Built as a data-driven **_awareness_** document, not as a standard
   - But the truth is is that it does also act as a pseudo-standard, and the people creating the list are aware of that.
   - The top 10 is the bare minimum baseline, not all-encompassing.
-  - If you are looking for a comprehensive standard, OWASP ASVS (Application Security Verification Standard) is much much more comprehensive document.
-    - Owasp Top 10 is great for introducing security principles in an organization that maybe hasn't taken security posture previously.
-    - If you want to build a security program or train developers in a very in-depth way OWASP ASVS is much more comprehensive.
-    - ASVS L1 is the new minimum.
+  - And keep in mind that this is the OWASP Top 10 and your organizations Top 10 might look a little different.
 
-
-^ Unity of opposites
+<!-- ^ If you are looking for a comprehensive standard, OWASP ASVS (Application Security Verification Standard) is much much more comprehensive document.
+  - Owasp Top 10 is great for introducing security principles in an organization that maybe hasn't taken security posture previously.
+  - If you want to build a security program or train developers in a very in-depth way OWASP ASVS is much more comprehensive.
+  - ASVS L1 is the new minimum.
 
 ^ How long would it take you to implement x?
   - 5 minutes, unless you're a contractor then you bill it as a two week project.
-  - Just remember contracting, if you can't be part of the solution, there's always money to be made prolonging the problem.
+  - Just remember contracting, if you can't be part of the solution, there's always money to be made prolonging the problem. -->
 
 ---
 
@@ -87,31 +89,30 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ### ![inline](assets/owasp/Security_Logging_and_Monitoring_Failures.png) _Security Logging & Monitoring Failures_
 ### ![inline](assets/owasp/SSRF.png) **_Server-Side Request Forgery_**
 
-^ Key:
-  - Anything that is green is new for 2021.
-  - Anything Bold was added in response to data collected.
-  - Anything highlighted were added because of survey responses.
-    - Data by nature is historical and not predictive of future trends, hence 8 of the top ten were data driven, 2 were chosen based off of a survey.
-    - Whether they are a bigger deal than the data shows and it's just difficult to test for is yet to be determined.
 
-^ About the survey:
-  - The survey answers the question, "What do you believe should be in the top 10 that is not likely to show up in the data?" (either because it's too new or just hard to test for).
-  - Survey is sent out to LinkedIn, Facebook, and Twitter.
+^ The Top 10 is determined by two parts.
 
-^ About the data collected:
+^ The first 8 are determined by data collected and aggregated voluntarily by companies/organizations:
   - The data is voluntarily collected by 13 companies/organizations.
   - Greater than half-million applications worth of vulnerability data with more than 400 unique CWE's.
-  - Data points included year, cwe, what kind of test it was (human, automated), number of apps found with at least one incident of the CWE.
-  - The data points are aggregated to determine an incident rate per CWE.
+  - Compared to I think 30 CWE's in 2017 (CWE - Common Weakness Enumeration)
+  - The data points are aggregated to determine an incident rate per CWE and then those are ordered.
 
-^ About the order
-  - The order is incredibly suspect. Depending on how you analyze the data you could come up with different orders.
-  - So I would emphasize that the order of the list is not representative of their importance.
-  - This is also an incomplete list, the "Top 10". Since you could make a checklist with hundreds of items (kind of like the ASVS),
-  - I'd argue that the Top 10 are probably all of equal importance.
+^ The second part is the survey:
+  - The survey answers the question, "What do you believe should be in the top 10 that is not likely to show up in the data?"
+  - And the reason they include this is because there will always be some vulnerabilities that either because they too new or just hard to test for, makes them unlikely to show up in the data.
+  - Data by nature is historical and not predictive of future trends, hence 8 of the top ten were data driven, 2 were chosen based off of a survey.
+  - So whether they are a bigger deal than the data shows or they're just difficult to test for is yet to be determined.
 
-^ About the names:
-  - Titles are meant to be root causes, not symptoms.
+^ They are then ordered from 1 to 10. Key:
+  - Anything that is green is new for 2021.
+  - Anything Bold was added in response to data collected.
+  - Anything highlighted was added because of survey responses.
+
+^ Although they are ordered from 1 to 10,
+  - I would emphasize that the order of the list is not as important as being aware of them.
+  - There are hundreds of vulnerabilities, so all of the 10 most common are going to be of equal importance if you zoom out a bit.
+  - And so by nature of being a Top 10 list, it is an incomplete list. Since you could make a checklist with hundreds of items (kind of like the ASVS),
 
 ---
 
@@ -138,26 +139,29 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Most of the largest breaches involve broken access control.
   One of the more difficult vulnerabilites to fix because there is not just one way to fix them.
 
+^ Unauthorized acccess to accounts
+  - Bypassing access control checks or the access control checks do not exist.
+  - Parameter tampering (modifying the url), modifying the internal application state.
 
-^ Unauthorized acccess to accounts : Bypassing access control checks or the access control checks do not exist.
-                                     Parameter tampering (modifying the url), modifying the internal application state.
+^ Unauthorized elevation of privilege
+  - Either acting as a user without being logged in as a user or acting as an admin while only being logged in as a user.
+  - This can lead to **Unauthorized create/read/update/delete operations**
 
-^ Unauthorized elevation of privilege : Either acting as a user without being logged in as a user or
-                                        acting as an admin while only being logged in as a user.
+^ JWT or Cookie tampering
+  - A lot of web APIs use JWTs and a lot of web sites use Cookies.
+  - JWT are Base64 encoded strings - a header, a payload, and a signature
+  - Storing JWTs in localStorage leaves you vulnerable to XSS attacks.
+  - Cookies are sent with every request.
+  - Cookies are vulnerable to CSRF attacks.
 
-^ Unauthorized create/read/update/delete operations : 
+^ CORS misconfigurations
+  - Allowing API access from unauthorized or untrusted sources.
 
-^ JWT or Cookie tampering : JWTS are more popular with web APIs
-                            JWT are Base64 encoded strings - a header, a payload, and a signature
-                            Storing JWTs in localStorage leaves you vulnerable to XSS attacks.
-                            Cookies are sent with every request.
-                            Cookies are vulnerable to CSRF attacks.
+^ Principle of Complete Mediation
+  - Every request to access objects should be checked to ensure that they are allowed (mediated)
+  - Not just the first check, and also not just external checks, but also internal requests between your services should be mediated.
 
-^ CORS misconfigurations : Allowing API access from unauthorized or untrusted sources.
-
-^ Principle of Complete Mediation : 
-
-^ Principle of Least Privilege : 
+^ Principle of Least Privilege
   - Applies not only to users of the application, but to the application itself,
     and what access they are given to databases, data, and other services.
     Ex. It's a rare case where the app needs a db user thats the db_owner, generally db_reader/db_writer are enough.
@@ -178,53 +182,51 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.column]
 ##### **_Recommendations_**
 - Static code analysis tools
-- Application Level Encryption
 - HTTP Strict-Transport-Security Header (HSTS)
 - Defense-in-depth
 - Classify data processed
 - Only store data you need
+- Application Level Encryption
 
 
-^ Footer : The 2021 Top 10 tries to focus more on root causes and not symptoms.
-           Cyptographic failure is often a root cause for the symptom Sensitive Data Exposure.
-           Focus is on cryptographic usage and implementation.
+^ Footer
+  - The 2021 Top 10 tries to focus more on root causes and not symptoms.
+  - Cyptographic failure is often a root cause for the symptom Sensitive Data Exposure.
 
-^ Ineffective/missing data-at-rest encryption : Bad keys? Bad ciphers? Bad cryptographic functions?
-                                                Base64 is not encryption.
+^ Ineffective/missing data-at-rest encryption
+  - Bad keys? Bad ciphers? Bad cryptographic functions?
+  - Base64 is not encryption.
 
-^ Ineffective/missing TLS : Consider anything before TLS 1.2 deprecated, all SSL is deprecated.
-                            When someone says SSL they are usually referring to TLS, its just the branding of SSL has stuck around.
-                            Ensure that HTTPS directives are enabled so that the site is only reachable over TLS.
+^ Ineffective/missing TLS
+  - Consider anything before TLS 1.2 deprecated, all SSL is deprecated.
+  - When someone says SSL they are usually referring to TLS, its just the branding of SSL has stuck around.
+  - Ensure that HTTPS directives are enabled so that the site is only reachable over TLS.
 
-^ Ineffective/missing password hashing : Are you using non-cryptographic hash functions when cryptographic hash functions are needed?
-                                         For example, PBKDF2 (Password Based Key Derivation Function 2) is a password hashing algorithm
-                                                      with a built-in work factor and iteration count.
-                                                      PBKDF2 is deliberately slow to reduce vulnerability of brute-force attacks.
+^ Ineffective/missing password hashing
+  - Are you using non-cryptographic hash functions when cryptographic hash functions are needed?
+  - There are certain hash algorithms known to be good password hash functions, and you should be using one of those.
 
-^ Static code analysis tools : It's easy to catch if a password is hard-coded somewhere, a SAST tool can easily pick that up.
-
-^ Application Level Encryption (ALE) : Moves the boundaries of encryption to within the appliation itself.
+^ Static code analysis tools
+  - It's easy to catch if a password is hard-coded somewhere, a SAST tool can easily pick that up.
 
 ^ HTTP Strict-Transport-Security Header
   - Instructs the browser to only access the site by HTTPS
-  - Only a browser instruction, other consumers of the API probably will not obey the instruction.
+  - Keep in mind its only a browser instruction, other consumers of the API probably will not obey the instruction.
   - The only way to really enforce HTTPS is to configure applications to only listen and respond to HTTPS
-    - Is there ever an exuse to use HTTP?
+  - But it's 2022 is there ever an exuse to use HTTP?
 
-^ Defense-in-depth : Encryption is a form of access control if you think about it.
-                     Only an authenticated identity should have the access permissions to decrypt data.
-                     So even if your access control is broken, having the data encrypted provides that extra protection.
-
-^ Classify data processed : Identify which data is sensitive according to privacy laws and regulatory requirements.
-                            Data Security
-                            Identify sensitive data
-                            Identify risks to data
-                            Build trust models
-                            Prioritize threat vectors
+^ Defense-in-depth
+  - Encryption is a form of access control if you think about it.
+  - Only an authenticated identity should have the access permissions to decrypt data.
+  - So even if your access control is broken, having the data encrypted provides that extra protection.
+  - honeypots
+    - lures for attackers, purposefully vulnerable to lure the attackers there to make it easier to detect them.
+    - But then you have a lot of alerting and monitoring on that honeypot.
+    - SIEM - Security information and event management.
 
 ^ Classify data processed
-  - Why is your grocery bill considered by GDPR/CCPA to be the highest level of security
-    - You can figure out medical issues and religion because of dietary resrictions
+  - Identify which data is sensitive according to privacy laws and regulatory requirements.
+  - Once you've identified sensitive data and the risks, you can build trust models, prioritize what the threats are.
 
 ---
 
@@ -239,6 +241,9 @@ text: alignment(left), text-scale(1.2), line-height(1)
     "message": "encrypt(msg)"
 }
 ```
+
+^ Application Level Encryption (ALE)
+  - Moves the boundaries of encryption to within the appliation itself.
 
 ---
 
@@ -259,11 +264,18 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ^ LDAP injection, XSS, SQL
   - Probably as developers no one needs to worry about LDAP injection, maybe IT.
-  - XSS, a type of injection wehre you inject code into a webpage.
+  - XSS, a type of injection where you inject code into a webpage (Note Footer).
+
+^ Validate, sanitize, escape any data that crosses trust boundaries.
+  - Any input you get from a client, input you receive from another API.
 
 ^ Use frameworks that assemble HTML safely
   - Better frameworks has been the driving factor the decline.
   - Cross-site scripting is one of the easier vulnerabilities to fix because of the improvement in frameworks.
+    - One of the reasons it was combined into Injection.
+    - Simple input-validation
+      - validate file contents match their file extensions
+      - validate the content-types (if you expect json, make sure it's json)
 
 ---
 
@@ -298,6 +310,10 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - email me and I will respond! matt'or'1'!='@mattsheehan.dev
     - stolen from jim manicode, one of the core maintainers of the top 10
 
+^ Prevention
+  - Always parameterize queries
+  - Even valid input can be dangerize
+
 ---
 
 ## A04: **Insecure Design**
@@ -305,7 +321,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.footer: ✪]
 
 [.column]
-- There is a difference between insecure design and insecure implementation.
+- The difference between an insecure design and an insecure implementation.
 - Requires considering security before code is written. :grimacing:
 - Secure design cannot be bolted on later.
 
@@ -321,43 +337,46 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Insecure Design
   - One of the new categories in 2021. Slightly controversial.
   - If you want to build the house of your dreams what do you do first?
-    - Do you immediately start laying bricks, no, you collect your requirements.
-      - Wife and four kids? Elderly parents? Disabled member in the family?
-    - After you've collected your requirements do you start laying bricks then?
-      - No, you see an architect who will design it for you.
+  - You don't immediately start laying the bricks before collecting the requirements your dream home would need.
+  - And once you have your requirements, you go talk to an Architect.
 
-^ Difference between secure design and secure implementation
+^ The difference between an insecure design and an insecure implementation.
+  - One is a design flaw, the other is a security bug.
   - A secure design can stil have implementation defects.
-  - It's the difference between a design flaw and a security bug
-    - A design flaw is an issue when designing the software
-      - reference architectures, gathering security requirements (nonfunctional requirements), and threat modeling help mitigate design flaws.
-    - A security bug is an implementation issue
-      - code reviews, security testing, secure coding training help mitigate security bugs.
   - But an insecure design cannot be fixed even with a perfect implementation, by definition.
+  - It's the difference between a design flaw and a security bug
   - An insecure design is costly to fix now, costlier to fix later
 
+<!-- ^ Design flaws vs. Security Bugs
+  - A design flaw is an issue when designing the software
+    - reference architectures, gathering security requirements (nonfunctional requirements), and threat modeling help mitigate design flaws.
+  - A security bug is an implementation issue
+    - code reviews, security testing, secure coding training help mitigate security bugs. -->
+
 ^ Requires considering security before code is written
-  - Security is often overlooked since it is considered a non-functional requirement
+  - Security is often overlooked as its considered a non-functional requirement
     - Functional requirements are usually things like the features of a system
     - Non-functional requirements are things like properties of a system (availibility, scalability, reliability, testability, deployability, security) (the "ilities")
+
+^ Secure design cannot be bolted on later.
+  - Secure-by-design means software that has been designed from the ground up to be secure.
   - Requires a holistic systems approach versus a component analysis
   - Requires a top-down decomposition from the business objectives.
   - Requires good visualization, hard to secure what you don't understand.
 
 ^ Threat modeling, secure reference architectures
-  - Use threat modeling for critical authentication, access control, business logic, and key flows
-  - Secure-by-design means software that has been designed from the ground up to be secure.
   - Every time you design a system you cannot start from a clean slate, there have to be some basic immutable principles, which is where reference architectures are needed.
+  - You should know what your threas are for all the key flows: your authentication, access control, business logic
 
 ^ Establish a Secure Development Lifecycle
   - Goes beyond just Shift-Left.
-  - Includes paved-roads, secured component library.
+  - Includes paved-road libraries, secured component libraries.
 
 ^ Establish security guiding principles 
   - Separation of privilege, least privilege, defense-in-depth, open design, human factored security, scalable security (embrace automation)
 
 ^ Unit test and integration tests
-  - Validate that all critical flows are resistant to the threat model.
+  - Validate that all critical paths are resistant to your threat models.
 
 ---
 
@@ -377,19 +396,17 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.column]
 #### **_Recommendations_**
 - Static code analysis tools
-- Create "paved-roads" for development.
+- Create "paved-roads" for development
 - Code reviews
-- Read the manual
+- Read the docs
 
 
 ^ The rise in IaC can be attributed to the increase in security misconfigurations.
   - But that's a good thing!
   - Before IaC there were still security misconfigurations
   - There just wasn't tooling that could statically or dynamically analyze the infrastructure. IaC has given us that capability.
-  - Now we can check the code to make sure the value is set to "HTTPS" for example.
 
 ^ Improper configurations on cloud services
-  - Across the entire stack.
   - Security settings in the application are misconfigured.
   - Default accounts/passwords are enabled/unchanged.
   - Check for apps running on non-standard ports that might not have security policies applied to them.
@@ -408,7 +425,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Code reviews
   - IaC brings the development best practices to IT and Operations.
 
-^ Read the manual
+^ Read the docs
   - If you want to learn the proper settings to configure something you have to read the manual.
   - There is a lot of documentation about how to harden your applications.
 
@@ -419,10 +436,10 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.footer: :arrow_up::arrow_up::arrow_up: Previously known as **A09:2017 Using Components with Known Vulnerabilities**]
 
 [.column]
+- Would probably be A01 if re-evaluated after Log4Shell
 - Modern software includes a lot of external code.
 - Includes OS, runtimes, and libraries.
 - Not upgrading dependencies in a risk-based, timely fashion.
-- Would probably be A01 if re-evaluated after Log4Shell
 
 ![inline left 50%](assets/news/equifax.png)
 
@@ -437,14 +454,13 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Would probably be A01 if re-evaluated after Log4Shell
   - Log4Shell is the Log4j vulnerability that allowed for arbitrary code execution.
 
-^ Includes OS, runtimes, and libraries
-  - OS patches happen regularly, shouldn't just happen on a monthly or quarterly schedule.
+^ Modern software includes a lot of external code.
+^ And that Includes the OS, runtimes, and libraries
+  - We live in a time where OS patches should be happening regularly, not just monthly or quarterly schedule when IT can get around to it.
 
-^ Continuously monitor for outdated components
-  - Github Dependency Check
-
-^ Continuously monitor for vulnerabilities
-  - OWASP Dependency Check - software supply chain security tool
+^ Not upgrading dependencies in a risk-based, timely fashion.
+  - Continuously monitor for outdated components (Github Dependabot)
+  - Continuously monitor for vulnerabilities (OWASP Dependency Check - software supply chain security tool)
 
 ^ Equifax
   - There was a third party software exploit (for Apache Struts), that had already of had been patched,
@@ -499,12 +515,9 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - Passwords should be salted and hashed (one-way)
 
 ^ Permitting brute force / credential stuffing
-  - 10 failed login attempts in under a minute / 100 failed login attempts in 24 hours
-  - What is credential stuffing?
-    - Credential stuffing is using existing username and password combinations used in credential dumps. These lists of leaked credentials are easily acquired.
-    - They are effective because users often reuse their username and passwords.
-    - So it's not a total guessing game.
-    - MFA is an effective strategy of preventing attacks.(99.9% according to Microsoft)
+  - Credential stuffing is using existing username and password combinations used in credential dumps. These lists of leaked credentials are easily acquired.
+  - They are effective because users often reuse their username and passwords.
+  - So it's not a total guessing game.
 
 ^ Insecure password recovery
   - What street did you grow up on?
@@ -513,9 +526,13 @@ text: alignment(left), text-scale(1.2), line-height(1)
 ^ Enumeration attacks
   - Ensure registration, credential recovery, and API pathways are hardened, use the same messages for all outcomes.
 
+^ Follow best practices for passwords and rate limiting logins.
+  - 10 failed login attempts in under a minute / 100 failed login attempts in 24 hours
+
 ^ Add Multi-factor Authentication where possible
   - MFA is a good prevention for credential stuffing, brute force attacks.
   - Preferably using an authenticator app as a two-step authentication. SMS is susceptible to SMS spoofing.
+  - MFA is an effective strategy of preventing brute force type attacks.(99.9% according to Microsoft)
 
 ^ Why is access control number 1 but authorization number 7?
   - Because frameworks that handle authorization have improved over the years but
@@ -533,7 +550,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ^ This is an article that came across my feed the other day, and this affects users in Russia
   - But how easy would it be for this to happen to any package?
-  - It's a littel crazy that we've built on entire software supply chain the pinky-promise that nothing malicious will get uploaded.
+  - It's sort of crazy that we've built an entire software supply chain on the promise that nothing malicious will get uploaded.
 
 ---
 
@@ -553,12 +570,9 @@ text: alignment(left), text-scale(1.2), line-height(1)
 [.column]
 ![inline fit right](assets/news/solarwinds.png)
 
-^ Software and Data Integrity Failures
-  - npm Package Developer Released Sabotaged Version That Deletes Files for Users Based in Russia
-
 ^ Plugins or libraries from untrusted sources
   - I'm looking at you javascript developers.
-  - It's like the whole security model of NPM is based off of pinky-promises.
+  - Downloading libraries from untrusted sources is like the whole security model of NPM.
   - Maybe a system composed of layers and layers of constantly updating code by whoever is not the most ideal system.
 
 ^ Verify software and data is from trusted sources
@@ -572,7 +586,7 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - What happened with SolarWinds is essentially their build system was compromised
   - and hackers were able to inject unverified code.
 
-^ Insecure deserialization
+^ Footer: Insecure deserialization
   - You probably know this, but programming languages allow you to turn a tree of objects into a string and send that to and from the browser.
   - If you receive and deserialize that string from an untrusted source it may allow objects or code to be executed.
 
@@ -604,19 +618,19 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - Expire the data when not needed anymore.
 
 
+^ Attackers rely on insufficient logging and monitoring to achieve their goals before detection.
 ^ Simple idea, difficult to implement.
   - Requires signficant commitment, complexity, cost, and operational support.
   - Challenges include tools, culture, budget, and training
-
-^ Usually security vulnerabilities are found from outside the company.
-  - ex. someone reports a fraudulent transcation.
-
+  - Ex. Static-code analysis can't find the absence of logging.
+^ Necessary for breach disclosure laws
 ^ Critical if you intend to prosecute
 
-^ Necessary for breach disclosure laws
+^ Average time to identify a breach is 280 days.
+  - Usually security vulnerabilities are found from outside the company.
+  - ex. someone reports a fraudulent transcation.
 
-^ Static-code analysis can't find the absence
-
+^ Centralized, append-only logging and monitoring store.
 ^ Difficult to have a centralized monitoring store without taking a multi-disciplinary approach.
   It's hard to get developers to care about security if they exist in their bubble, and QA exists in it's bubble.
   Developers have a lot of other things they are trying to do, build new features, improve quality, increase performance, build to scale. How do you get developer attention when security is a constantly moving target is very nuanced.
@@ -629,10 +643,6 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 [.footer: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html]
 
-^ Footer
-  - I do want to bring attention to the footer and the cheatsheet for logging
-  - It's particularly good in the way to lays out an logging message standard that can actually be implemented.
-
 [.column]
 #### What to log
 - Input validation failures (invalid parameter names, invalid protocol)
@@ -644,14 +654,19 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ^ Input validation failures
   - invalid parameter names, invalid protocol
+
 ^ Output validation failures
   - database record mismatch
+
 ^ Authentication failures and successes
 ^ Application errors
 ^ Application startup, shutdown, configuration changes
 ^ High-risk functions
   - All access control events, deleting users, assigning privileges, all actions by administrative users, data imports and exports
 
+^ Footer
+  - I do want to bring attention to the footer and the cheatsheet for logging
+  - It's particularly good in the way to lays out an logging message standard that can actually be implemented.
 
 [.column]
 #### What not to log
@@ -709,13 +724,18 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ![right fit](assets/owl2.jpg)
 
-- There are more than 10 vulnerabilities, it's just the OWASP top 10.
-- Adopt a security mindset, shift(expand)-left.
-- Security is a moving target.
-- A lot of security exists outside of code.
 - Security is a process not a product.
+- Security is always a moving target.
+- A lot of security exists outside of code.
+- Adopt a security mindset, shift(expand)-left.
 
-^ What kind of attacks, the sophistication of attacks is always evolving.
+^ Security is a process not a product.
+  - The kind like the owl, there are a lot of steps that are not listed anywhere here.
+  - There's not really anything you can do in security that will make the business money.
+  - The best case scenario is it potentially loses them less money down the road.
+
+^ Security is always a moving target.
+  - What kind of attacks, the sophistication of attacks is always evolving.
 
 ^ Engage developers, fun and engaging training, build security champions.
   - Forcing security on developers doesn't work, you cannot dictate security.
@@ -725,10 +745,6 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - Sometimes called defensive coding.
   - Assumes that users are going to use the application in ways not intended.
 
-^ Security is a process not a product.
-  - There's not really anything you can do in security that will make the business money.
-  - The best case scenario is it potentially loses them less money down the road.
-
 ---
 
 ## Other projects
@@ -736,9 +752,18 @@ text: alignment(left), text-scale(1.2), line-height(1)
 - OWASP SAMM
 - OWASP Proactive Controls
 
+^ Owasp SAMM
+  - Sofware assurance maturity model
+  - A method to analyze your security posture
+
+^ Owasp proactive controls
+  - A list of controls and techniques that should be included in every project
+
 ## Links
 
 - https://owasp.org/Top10/
 - https://github.com/OWASP/Top10
 - https://www.verizon.com/business/resources/reports/dbir/2021/masters-guide/
+- https://youtu.be/opRMrEfAIiI
 
+^ Funny video from 2015 on jimmy kimmel, probably the only funny thing he's ever done.
