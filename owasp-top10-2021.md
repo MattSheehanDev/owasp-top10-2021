@@ -9,9 +9,6 @@ text: alignment(left), text-scale(1.2), line-height(1)
 
 ### _Matthew Sheehan_
 
-^ About Me
-  - Not an expert, but I am an enthusiast
-
 ---
 
 ## About **OWASP Top 10**
@@ -60,14 +57,6 @@ text: alignment(left), text-scale(1.2), line-height(1)
   - The top 10 is the bare minimum baseline, not all-encompassing.
   - And keep in mind that this is the OWASP Top 10 and your organizations Top 10 might look a little different.
 
-<!-- ^ If you are looking for a comprehensive standard, OWASP ASVS (Application Security Verification Standard) is much much more comprehensive document.
-  - Owasp Top 10 is great for introducing security principles in an organization that maybe hasn't taken security posture previously.
-  - If you want to build a security program or train developers in a very in-depth way OWASP ASVS is much more comprehensive.
-  - ASVS L1 is the new minimum.
-
-^ How long would it take you to implement x?
-  - 5 minutes, unless you're a contractor then you bill it as a two week project.
-  - Just remember contracting, if you can't be part of the solution, there's always money to be made prolonging the problem. -->
 
 ---
 
