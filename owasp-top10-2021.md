@@ -3,6 +3,7 @@ autoscale: true
 build-lists: false
 list: bullet-character(∙)
 text: alignment(left), text-scale(1.2), line-height(1)
+theme: Titillium
 
 
 # **OWASP Top 10:** 2021 Edition
